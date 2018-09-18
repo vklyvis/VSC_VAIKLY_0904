@@ -188,7 +188,7 @@ while bound < lygis:
     print(" ".join(display))
 
     if teis == lygis:
-        print "CONGRATULATIONS! ( . Y . )"
+        print "CONGRATULATIONS! You won!"
         break
 
 

@@ -62,7 +62,7 @@ pakartas = '''Sorry, wrong letter, Gratz, You hanged yourself - OUT ZYBEN!
 atsakymas = []
 lygis = int(input("iveskite lygi: "))
 
-while lygis <= 1 and lygis <= 6:
+while lygis <= 1 or lygis > 6:
     lygis = int(input("iveskite lygi: "))
 
 alist = open("zodziu_sarasas.txt", "r")

@@ -60,10 +60,17 @@ pakartas = '''Sorry, wrong letter, Gratz, You hanged yourself - OUT ZYBEN!
 ========='''
 
 atsakymas = []
-lygis = int(input("iveskite lygi: "))
+intas = 1
+while intas == 1:
+    try:
+        lygis = int(raw_input("iveskite lygi: "))
+        intas = 0
+    except ValueError:
+        print "TURITE IVESTI SKAICIU!"
+        intas = 1
 
 while lygis <= 1 or lygis > 6:
-    lygis = int(input("iveskite lygi: "))
+    lygis = int(raw_input("iveskite lygi: "))
 
 alist = open("zodziu_sarasas.txt", "r")
 words = alist.readlines()
@@ -91,13 +98,24 @@ neteis = -1
 panaudota = []
 panaudotaneteisinga = []
 
+
 while bound < lygis:
-    guess = raw_input("Enter a letter: ")
+
+    guess = raw_input("Iveskite raide: ")
     guess = guess.lower()
+    try:
+        if int(guess):
+            print "Reikia raides o ne skaiciaus"
+            bound = bound - 1
+            panaudotaneteisinga.remove(guess)
+    except ValueError:
+        pass
+
 
     if guess in panaudota:
         print "si raide yra teisinga, bet jau buvo panaudota"
         teis = teis - 1
+
 
     if guess in panaudotaneteisinga:
         neteis = neteis + 1
@@ -105,7 +123,6 @@ while bound < lygis:
         print "Antra karta panaudota neteisinga raide"
         if neteis > 0:
             bound = bound + 1
-
 
 
     for i in range(len(zodis_kuri_spet)):
@@ -132,6 +149,7 @@ while bound < lygis:
             print(pakartas)
         print bound
         panaudotaneteisinga.extend(guess)
+
 
     if guess not in display and lygis == 5:
         bound = bound + 1
@@ -186,6 +204,7 @@ while bound < lygis:
 
 
     print(" ".join(display))
+
 
     if teis == lygis:
         print "CONGRATULATIONS! You won!"
